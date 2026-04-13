@@ -275,28 +275,60 @@
       </div>
       <div class="products-grid">
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/1.jpeg" alt="" />
-            <span class="product-tag">Bestseller</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/1.jpeg" alt="" />
+              <span class="product-tag">Bestseller</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Brocard Deux-ton</div>
@@ -315,28 +347,64 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/2.jpeg" alt="Dentelle Fleurs Bleues" loading="lazy" />
-            <span class="product-tag new">Nouveau</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img
+                src="img/2.jpeg"
+                alt="Dentelle Fleurs Bleues"
+                loading="lazy"
+              />
+              <span class="product-tag new">Nouveau</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Dentelle Brodée</div>
@@ -355,32 +423,64 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img
-              src="img/3.jpeg"
-              alt="Broderie Rouge & Vert SN605"
-              loading="lazy"
-            />
-            <span class="product-tag exclu">Exclusif</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img
+                src="img/3.jpeg"
+                alt="Broderie Rouge & Vert SN605"
+                loading="lazy"
+              />
+              <span class="product-tag exclu">Exclusif</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Broderie Rouge & Vert</div>
@@ -399,31 +499,63 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img
-              src="img/t-3d.jpeg"
-              alt="Tissu en maille de haut qualité avec applique perlée 3D"
-              loading="lazy"
-            />
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img
+                src="img/t-3d.jpeg"
+                alt="Tissu en maille de haut qualité avec applique perlée 3D"
+                loading="lazy"
+              />
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Tissu en maille</div>
@@ -442,27 +574,59 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/5.jpeg" alt="Guipure Rouge Roses" loading="lazy" />
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/5.jpeg" alt="Guipure Rouge Roses" loading="lazy" />
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Guipure Rouge Roses</div>
@@ -481,28 +645,60 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/7.jpeg" alt="Dentelle Corail" loading="lazy" />
-            <span class="product-tag new">Nouveau</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/7.jpeg" alt="Dentelle Corail" loading="lazy" />
+              <span class="product-tag new">Nouveau</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Dentelle Corail</div>
@@ -521,27 +717,59 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/8.jpeg" alt="Jacquard Roses" loading="lazy" />
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/8.jpeg" alt="Jacquard Roses" loading="lazy" />
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Jacquard Roses</div>
@@ -560,28 +788,60 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/9.jpeg" alt="Voile Damier" loading="lazy" />
-            <span class="product-tag new">Nouveau</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/9.jpeg" alt="Voile Damier" loading="lazy" />
+              <span class="product-tag new">Nouveau</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Voile Damier</div>
@@ -600,28 +860,60 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/1-1.jpeg" alt="Velours Premium" loading="lazy" />
-            <span class="product-tag new">Nouveau</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/1-1.jpeg" alt="Velours Premium" loading="lazy" />
+              <span class="product-tag new">Nouveau</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Velours Premium</div>
@@ -640,27 +932,59 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/1-2.jpeg" alt="Satin Brillant" loading="lazy" />
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/1-2.jpeg" alt="Satin Brillant" loading="lazy" />
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Satin Lisse</div>
@@ -679,28 +1003,60 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/1-3.jpeg" alt="Damassé Floral" loading="lazy" />
-            <span class="product-tag exclu">Exclusif</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/1-3.jpeg" alt="Damassé Floral" loading="lazy" />
+              <span class="product-tag exclu">Exclusif</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Damassé Floral</div>
@@ -719,28 +1075,60 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/1-4.jpeg" alt="Mousseline Dorée" loading="lazy" />
-            <span class="product-tag">Bestseller</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/1-4.jpeg" alt="Mousseline Dorée" loading="lazy" />
+              <span class="product-tag">Bestseller</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Mousseline Fine</div>
@@ -759,28 +1147,60 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <div class="product-img">
-            <img src="img/1-5.jpeg" alt="Ankara Motifs" loading="lazy" />
-            <span class="product-tag new">Nouveau</span>
-            <div class="product-overlay">
-              <button class="overlay-btn" onclick="addToCart(this)">
-                Ajouter au Panier
+          <div class="product-media">
+            <div class="media-tabs">
+              <button class="media-tab active" data-tab="image">Image</button>
+              <button class="media-tab" data-tab="video">Vidéo</button>
+            </div>
+            <div class="product-img media-content active" data-content="image">
+              <img src="img/1-5.jpeg" alt="Ankara Motifs" loading="lazy" />
+              <span class="product-tag new">Nouveau</span>
+              <div class="product-overlay">
+                <button class="overlay-btn" onclick="addToCart(this)">
+                  Ajouter au Panier
+                </button>
+              </div>
+              <button class="wishlist-btn" title="Favoris">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
               </button>
             </div>
-            <button class="wishlist-btn" title="Favoris">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            <div class="product-video media-content" data-content="video">
+              <div class="video-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <p>Ajouter une vidéo</p>
+                <input
+                  type="text"
+                  class="video-url-input"
+                  placeholder="Collez l'URL de la vidéo (YouTube ou MP4)"
                 />
-              </svg>
-            </button>
+                <button class="btn-set-video">Ajouter vidéo</button>
+              </div>
+              <video class="video-player" controls style="display: none">
+                <source src="" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            </div>
           </div>
           <div class="product-info">
             <div class="cat">Ankara Cosmopolite</div>

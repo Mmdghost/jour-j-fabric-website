@@ -752,16 +752,62 @@ body:hover .hero-right-img {
   display: flex;
   flex-direction: column;
 }
-.product-img {
+.product-media {
   position: relative;
   overflow: hidden;
   background: var(--charcoal);
   aspect-ratio: 3/4;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
-.product-card--big .product-img {
-  aspect-ratio: auto;
+.media-tabs {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.media-tab {
+  padding: 6px 12px;
+  background: rgba(26, 18, 18, 0.8);
+  color: rgba(245, 237, 232, 0.6);
+  border: 1px solid rgba(200, 154, 134, 0.3);
+  border-radius: 4px;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: all 0.3s;
+  backdrop-filter: blur(4px);
+}
+.media-tab:hover {
+  background: rgba(200, 154, 134, 0.2);
+  border-color: var(--rg);
+  color: var(--rg);
+}
+.media-tab.active {
+  background: var(--rg);
+  color: var(--obsidian);
+  border-color: var(--rg);
+}
+.media-content {
+  display: none;
+  width: 100%;
   height: 100%;
+}
+.media-content.active {
+  display: flex;
+}
+.product-img.media-content {
+  position: relative;
+  overflow: hidden;
+  background: var(--charcoal);
+  aspect-ratio: 3/4;
+  flex-shrink: 0;
 }
 .product-img img {
   width: 100%;
@@ -770,7 +816,7 @@ body:hover .hero-right-img {
   transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: block;
 }
-.product-card:hover .product-img img {
+.product-media:hover .product-img img {
   transform: scale(1.06);
 }
 .product-overlay {
@@ -788,8 +834,84 @@ body:hover .hero-right-img {
   align-items: flex-end;
   padding: 22px;
 }
-.product-card:hover .product-overlay {
+.product-media:hover .product-overlay {
   opacity: 1;
+}
+.product-video {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--charcoal);
+}
+.video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+.video-placeholder svg {
+  color: var(--rg);
+  opacity: 0.6;
+}
+.video-placeholder p {
+  font-size: 12px;
+  color: rgba(245, 237, 232, 0.5);
+  margin: 0;
+}
+.video-url-input {
+  width: 90%;
+  padding: 8px 12px;
+  background: rgba(26, 18, 18, 0.7);
+  border: 1px solid rgba(200, 154, 134, 0.3);
+  border-radius: 4px;
+  color: var(--ivory);
+  font-size: 10px;
+  outline: none;
+  transition: all 0.3s;
+}
+.video-url-input:focus {
+  border-color: var(--rg);
+  background: rgba(26, 18, 18, 0.9);
+}
+.video-url-input::placeholder {
+  color: rgba(245, 237, 232, 0.3);
+}
+.btn-set-video {
+  padding: 8px 16px;
+  background: var(--rg);
+  color: var(--obsidian);
+  border: none;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: background 0.3s;
+}
+.btn-set-video:hover {
+  background: var(--rg-light);
+}
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.product-img {
+  position: relative;
+  overflow: hidden;
+  background: var(--charcoal);
+  aspect-ratio: 3/4;
+  flex-shrink: 0;
+}
+.product-card--big .product-img {
+  aspect-ratio: auto;
+  height: 100%;
 }
 .overlay-btn {
   width: 100%;
@@ -805,7 +927,7 @@ body:hover .hero-right-img {
   transform: translateY(10px);
   transition: transform 0.4s ease 0.1s;
 }
-.product-card:hover .overlay-btn {
+.product-media:hover .overlay-btn {
   transform: translateY(0);
 }
 .wishlist-btn {
@@ -815,7 +937,7 @@ body:hover .hero-right-img {
   width: 36px;
   height: 36px;
   background: rgba(26, 18, 18, 0.7);
-  border: 1px solid rgba(200, 154, 134, 0.3);
+  border: 1px solid rgba(200, 134, 134, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -828,7 +950,7 @@ body:hover .hero-right-img {
     background 0.3s,
     color 0.3s;
 }
-.product-card:hover .wishlist-btn {
+.product-media:hover .wishlist-btn {
   opacity: 1;
 }
 .wishlist-btn:hover {

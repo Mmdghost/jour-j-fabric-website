@@ -484,3 +484,71 @@ if (nlBtn) {
     }
   });
 }
+
+// Product Media Tabs (Image & Video)
+document.addEventListener("DOMContentLoaded", () => {
+  // Media tab switching
+  document.querySelectorAll(".media-tab").forEach((tab) => {
+    tab.addEventListener("click", (e) => {
+      const tabType = e.target.dataset.tab;
+      const cardMedia = e.target.closest(".product-media");
+
+      // Remove active from all tabs in this media
+      cardMedia
+        .querySelectorAll(".media-tab")
+        .forEach((t) => t.classList.remove("active"));
+      // Add active to clicked tab
+      e.target.classList.add("active");
+
+      // Hide all content
+      cardMedia.querySelectorAll(".media-content").forEach((content) => {
+        content.classList.remove("active");
+      });
+      // Show selected content
+      cardMedia
+        .querySelector(`[data-content="${tabType}"]`)
+        .classList.add("active");
+    });
+  });
+
+  // Video URL input and button
+  document.querySelectorAll(".btn-set-video").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const input = btn
+        .closest(".video-placeholder")
+        .querySelector(".video-url-input");
+      const videoUrl = input.value.trim();
+
+      if (!videoUrl) {
+        alert("Veuillez entrer une URL vidéo");
+        return;
+      }
+
+      const videoContainer = btn.closest(".product-video");
+      const videoPlayer = videoContainer.querySelector(".video-player");
+      const placeholder = videoContainer.querySelector(".video-placeholder");
+
+      // Handle YouTube URLs
+      if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+        let videoId = "";
+        if (videoUrl.includes("youtube.com")) {
+          videoId = videoUrl.split("v=")[1]?.split("&")[0];
+        } else if (videoUrl.includes("youtu.be")) {
+          videoId = videoUrl.split("youtu.be/")[1];
+        }
+
+        if (videoId) {
+          const iframeSrc = `https://www.youtube.com/embed/${videoId}`;
+          videoPlayer.outerHTML = `<iframe width="100%" height="100%" src="${iframeSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+          placeholder.style.display = "none";
+        }
+      } else {
+        // Handle direct video files
+        videoPlayer.querySelector("source").src = videoUrl;
+        videoPlayer.style.display = "block";
+        placeholder.style.display = "none";
+        videoPlayer.load();
+      }
+    });
+  });
+});
