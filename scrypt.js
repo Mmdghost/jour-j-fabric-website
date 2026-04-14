@@ -408,9 +408,12 @@ function sendOrderEmail() {
   window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
 }
 
-function placeOrder() {
+function placeOrder(event) {
+  event.preventDefault(); // Empêcher la soumission par défaut
+
   const prenom = document.getElementById("ck-prenom")?.value.trim() || "";
   const nom = document.getElementById("ck-nom")?.value.trim() || "";
+  const email = document.getElementById("ck-email")?.value.trim() || "";
   const tel = document.getElementById("ck-tel")?.value.trim() || "";
   const adresse = document.getElementById("ck-adresse")?.value.trim() || "";
   const ville = document.getElementById("ck-ville")?.value || "";
@@ -418,38 +421,67 @@ function placeOrder() {
 
   if (!prenom || !nom) {
     alert("Veuillez entrer votre prénom et nom.");
-    return;
+    return false;
+  }
+  if (!email || !email.includes("@")) {
+    alert("Veuillez entrer une adresse email valide.");
+    return false;
   }
   if (!tel) {
     alert("Veuillez entrer votre numéro de téléphone.");
-    return;
+    return false;
   }
   if (!adresse || !ville) {
     alert("Veuillez entrer votre adresse de livraison.");
-    return;
+    return false;
   }
   if (!payMethod) {
     alert("Veuillez choisir un mode de paiement.");
-    return;
+    return false;
   }
 
   const num = "JJF-" + Date.now().toString().slice(-6);
   const orderNum = "#" + num;
+
+  const paymentLabel =
+    payMethod.closest("label")?.innerText.replace("✓", "").trim() ||
+    "Non precise";
+
+  // Préparer les détails des articles
+  const cartDetails = cart
+    .map(
+      (item) => `${item.name} (x${item.qty}) - ${item.price * item.qty} FCFA`,
+    )
+    .join(" | ");
+
+  // Remplir les champs cachés
+  document.getElementById("hidden-ordernum").value = orderNum;
+  document.getElementById("hidden-articles").value = cartDetails;
+  document.getElementById("hidden-total").value = getTotalPrice() + " FCFA";
+  document.getElementById("hidden-payment").value = paymentLabel;
+
+  // Afficher le message de confirmation avant soumission
   document.getElementById("ckFormGrid").style.display = "none";
   document.querySelector(".ck-back").style.display = "none";
   document.querySelector(".ck-header").style.display = "none";
   document.getElementById("orderNum").textContent = orderNum;
   document.getElementById("ckSuccess").classList.add("show");
 
-  const paymentLabel =
-    payMethod.closest("label")?.innerText.replace("✓", "").trim() ||
-    "Non precise";
-  lastOrderSubject = `Commande ${orderNum} - ${prenom} ${nom}`;
-  lastOrderMessage = buildOrderMessage(
-    orderNum,
-    { prenom, nom, tel, ville, adresse },
-    paymentLabel,
-  );
+  const successMsg = document.querySelector(".ck-success p");
+  if (successMsg) {
+    successMsg.innerHTML = `
+      ✅ Votre commande a été enregistrée avec succès!<br>
+      <strong>Numéro: ${orderNum}</strong><br>
+      Vous recevrez bientôt une confirmation par email et WhatsApp.
+    `;
+  }
+
+  // Soumettre le formulaire après un court délai
+  setTimeout(() => {
+    document.getElementById("checkoutForm").submit();
+  }, 1000);
+
+  return false; // Empêcher la soumission jusqu'au submit() explicite
 }
 
 function resetAll() {
@@ -543,12 +575,33 @@ document.addEventListener("DOMContentLoaded", () => {
           placeholder.style.display = "none";
         }
       } else {
-        // Handle direct video files
-        videoPlayer.querySelector("source").src = videoUrl;
+        // Handle direct video files (MP4, WebM, etc)
+        const sourceTag = videoPlayer.querySelector("source");
+        sourceTag.src = videoUrl;
+        sourceTag.type = "video/mp4";
         videoPlayer.style.display = "block";
         placeholder.style.display = "none";
         videoPlayer.load();
+        videoPlayer.play().catch(() => {
+          // Si autoplay échoue, c'est OK, l'utilisateur peut cliquer
+          console.log("Autoplay prevented or video load failed");
+        });
       }
     });
+  });
+
+  // Check if any video source already has a URL on page load
+  document.querySelectorAll(".video-player").forEach((videoPlayer) => {
+    const sourceTag = videoPlayer.querySelector("source");
+    if (sourceTag && sourceTag.src && sourceTag.src.trim() !== "") {
+      videoPlayer.style.display = "block";
+      const placeholder = videoPlayer
+        .closest(".product-video")
+        .querySelector(".video-placeholder");
+      if (placeholder) {
+        placeholder.style.display = "none";
+      }
+      videoPlayer.load();
+    }
   });
 });
