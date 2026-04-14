@@ -457,18 +457,35 @@ function placeOrder(event) {
 
   console.log("✅ Validation OK, panier:", cart.length, "articles");
 
+  // DEBUG: Afficher les détails du panier
+  console.log("🛒 Panier détails:", cart);
+  cart.forEach((item, idx) => {
+    console.log(
+      `  Item ${idx}: ${item.name} - Price: ${item.price}, Qty: ${item.qty}, Subtotal: ${item.price * item.qty}`,
+    );
+  });
+
   // Numéro de commande
   const num = "JJF-" + Date.now().toString().slice(-6);
   const orderNum = "#" + num;
 
   // Détails
   const cartText = cart.map((item) => item.name + " x" + item.qty).join(", ");
-  
+
   // Calculer le total (même formule que updateCart)
   const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const disc = promoApplied ? Math.round(sub * PROMO_PCT) : 0;
   const totalPrice = sub - disc;
-  
+
+  console.log(
+    "💰 Calcul total - Sous-total:",
+    sub,
+    "Discount:",
+    disc,
+    "Total:",
+    totalPrice,
+  );
+
   const paymentName =
     payMethod.closest("label")?.textContent?.replace("✓", "").trim() ||
     "Non spécifié";
