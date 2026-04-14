@@ -409,99 +409,130 @@ function sendOrderEmail() {
 }
 
 function placeOrder(event) {
-  event.preventDefault(); // Empêcher la soumission par défaut
+  console.log("placeOrder() called");
+  event.preventDefault();
 
-  console.log("🔵 placeOrder() called");
-
-  const prenom = document.getElementById("ck-prenom")?.value.trim() || "";
-  const nom = document.getElementById("ck-nom")?.value.trim() || "";
-  const email = document.getElementById("ck-email")?.value.trim() || "";
-  const tel = document.getElementById("ck-tel")?.value.trim() || "";
-  const adresse = document.getElementById("ck-adresse")?.value.trim() || "";
-  const ville = document.getElementById("ck-ville")?.value || "";
+  // Récupérer les valeurs
+  const prenom = document.getElementById("ck-prenom")?.value?.trim();
+  const nom = document.getElementById("ck-nom")?.value?.trim();
+  const email = document.getElementById("ck-email")?.value?.trim();
+  const tel = document.getElementById("ck-tel")?.value?.trim();
+  const adresse = document.getElementById("ck-adresse")?.value?.trim();
+  const ville = document.getElementById("ck-ville")?.value;
   const payMethod = document.querySelector('input[name="payment"]:checked');
 
-  if (!prenom || !nom) {
-    alert("❌ Veuillez entrer votre prénom et nom.");
+  // Validation
+  if (!prenom) {
+    alert("Veuillez entrer votre prénom");
+    return false;
+  }
+  if (!nom) {
+    alert("Veuillez entrer votre nom");
     return false;
   }
   if (!email || !email.includes("@")) {
-    alert("❌ Veuillez entrer une adresse email valide.");
+    alert("Veuillez entrer une email valide");
     return false;
   }
   if (!tel) {
-    alert("❌ Veuillez entrer votre numéro de téléphone.");
+    alert("Veuillez entrer un téléphone");
     return false;
   }
-  if (!adresse || !ville) {
-    alert("❌ Veuillez entrer votre adresse de livraison.");
+  if (!adresse) {
+    alert("Veuillez entrer l'adresse");
+    return false;
+  }
+  if (!ville) {
+    alert("Veuillez sélectionner une ville");
     return false;
   }
   if (!payMethod) {
-    alert("❌ Veuillez choisir un mode de paiement.");
+    alert("Veuillez choisir un mode de paiement");
     return false;
   }
   if (!cart || cart.length === 0) {
-    alert("❌ Votre panier est vide. Veuillez ajouter des articles.");
+    alert("Votre panier est vide!");
     return false;
   }
 
-  console.log(
-    "✅ Validation réussie, panier contient:",
-    cart.length,
-    "articles",
-  );
+  console.log("✅ Validation OK, panier:", cart.length, "articles");
 
+  // Numéro de commande
   const num = "JJF-" + Date.now().toString().slice(-6);
   const orderNum = "#" + num;
 
-  const paymentLabel =
-    payMethod.closest("label")?.innerText.replace("✓", "").trim() ||
-    "Non precise";
-
-  // Préparer les détails des articles
-  const cartDetails = cart
-    .map(
-      (item) => `${item.name} (x${item.qty}) - ${item.price * item.qty} FCFA`,
-    )
-    .join(" | ");
-
-  // Remplir les champs cachés
+  // Détails
+  const cartText = cart.map((item) => item.name + " x" + item.qty).join(", ");
+  let totalPrice = 0;
   try {
-    document.getElementById("hidden-ordernum").value = orderNum;
-    document.getElementById("hidden-articles").value = cartDetails;
-    document.getElementById("hidden-total").value = getTotalPrice() + " FCFA";
-    document.getElementById("hidden-payment").value = paymentLabel;
-    console.log("✅ Champs cachés remplis");
-  } catch (err) {
-    console.error("❌ Erreur remplissage champs cachés:", err);
+    totalPrice =
+      document.querySelectorAll(".product-card").length > 0
+        ? Array.from(document.querySelectorAll(".product-in-cart")).reduce(
+            (sum, el) =>
+              sum +
+              parseFloat(el.querySelector(".price-in-cart")?.textContent || 0),
+            0,
+          )
+        : 0;
+  } catch (e) {
+    console.log("Note: calcul total échoué, utilisé approche alternative");
+    totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  }
+  const paymentName =
+    payMethod.closest("label")?.textContent?.replace("✓", "").trim() ||
+    "Non spécifié";
+
+  // Remplir champs cachés
+  try {
+    const hidden_num = document.getElementById("hidden-ordernum");
+    const hidden_art = document.getElementById("hidden-articles");
+    const hidden_tot = document.getElementById("hidden-total");
+    const hidden_pay = document.getElementById("hidden-payment");
+
+    if (hidden_num) hidden_num.value = orderNum;
+    if (hidden_art) hidden_art.value = cartText;
+    if (hidden_tot) hidden_tot.value = totalPrice + " FCFA";
+    if (hidden_pay) hidden_pay.value = paymentName;
+
+    console.log("✅ Champs remplis:", orderNum, cartText, totalPrice);
+  } catch (e) {
+    console.error("Erreur remplissage:", e);
   }
 
-  // Afficher le message de confirmation avant soumission
-  document.getElementById("ckFormGrid").style.display = "none";
-  document.querySelector(".ck-back").style.display = "none";
-  document.querySelector(".ck-header").style.display = "none";
-  document.getElementById("orderNum").textContent = orderNum;
-  document.getElementById("ckSuccess").classList.add("show");
+  // Afficher succès
+  try {
+    const formGrid = document.getElementById("ckFormGrid");
+    const headerBack = document.querySelector(".ck-back");
+    const headerTop = document.querySelector(".ck-header");
+    const successDiv = document.getElementById("ckSuccess");
+    const orderNumEl = document.getElementById("orderNum");
+    const successMsg = document.querySelector(".ck-success p");
 
-  const successMsg = document.querySelector(".ck-success p");
-  if (successMsg) {
-    successMsg.innerHTML = `
-      ✅ Votre commande a été enregistrée avec succès!<br>
-      <strong>Numéro: ${orderNum}</strong><br>
-      Vous recevrez bientôt une confirmation par email et WhatsApp.
-    `;
+    if (formGrid) formGrid.style.display = "none";
+    if (headerBack) headerBack.style.display = "none";
+    if (headerTop) headerTop.style.display = "none";
+    if (orderNumEl) orderNumEl.textContent = orderNum;
+    if (successDiv) successDiv.classList.add("show");
+    if (successMsg)
+      successMsg.innerHTML = `✅ Commande ${orderNum} enregistrée!<br>Vous recevrez une confirmation par email.`;
+
+    console.log("✅ Succès affiché");
+  } catch (e) {
+    console.error("Erreur affichage succès:", e);
   }
 
-  console.log("✅ Message de succès affiché, soumission dans 1s...");
-
-  // Soumettre le formulaire après un court délai
+  // Soumettre
   setTimeout(() => {
-    console.log("🔵 Soumission du formulaire");
-    document.getElementById("checkoutForm").submit();
-  }, 1000);
+    console.log("Soumission du formulaire...");
+    const form = document.getElementById("checkoutForm");
+    if (form) {
+      form.submit();
+    } else {
+      console.error("Formulaire non trouvé!");
+    }
+  }, 800);
 
-  return false; // Empêcher la soumission jusqu'au submit() explicite
+  return false;
 }
 
 function resetAll() {
@@ -624,4 +655,16 @@ document.addEventListener("DOMContentLoaded", () => {
       videoPlayer.load();
     }
   });
+
+  // Initialize checkout form
+  const checkoutForm = document.getElementById("checkoutForm");
+  if (checkoutForm) {
+    console.log("✅ Formulaire de commande trouvé, attachement événement");
+    checkoutForm.addEventListener("submit", (e) => {
+      console.log("✅ Submit event déclenché");
+      placeOrder(e);
+    });
+  } else {
+    console.error("❌ Formulaire checkoutForm non trouvé!");
+  }
 });
