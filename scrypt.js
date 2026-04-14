@@ -463,21 +463,12 @@ function placeOrder(event) {
 
   // Détails
   const cartText = cart.map((item) => item.name + " x" + item.qty).join(", ");
-  let totalPrice = 0;
-  try {
-    totalPrice =
-      document.querySelectorAll(".product-card").length > 0
-        ? Array.from(document.querySelectorAll(".product-in-cart")).reduce(
-            (sum, el) =>
-              sum +
-              parseFloat(el.querySelector(".price-in-cart")?.textContent || 0),
-            0,
-          )
-        : 0;
-  } catch (e) {
-    console.log("Note: calcul total échoué, utilisé approche alternative");
-    totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  }
+  
+  // Calculer le total (même formule que updateCart)
+  const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const disc = promoApplied ? Math.round(sub * PROMO_PCT) : 0;
+  const totalPrice = sub - disc;
+  
   const paymentName =
     payMethod.closest("label")?.textContent?.replace("✓", "").trim() ||
     "Non spécifié";
