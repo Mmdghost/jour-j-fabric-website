@@ -75,11 +75,6 @@ document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
 
 // Cart state
 let cart = [];
-let lastOrderSubject = "";
-let lastOrderMessage = "";
-
-const OWNER_EMAIL = "albarakshopp@gmail.com";
-const OWNER_WHATSAPP = "221771335911";
 
 const CATALOG = [
   {
@@ -395,17 +390,6 @@ function buildOrderMessage(orderNum, customer, paymentLabel) {
     `Remise: ${fmt(disc)}`,
     `Total: ${fmt(total)}`,
   ].join("\n");
-}
-
-function sendOrderWhatsapp() {
-  const text = encodeURIComponent(lastOrderMessage || "Nouvelle commande");
-  window.open(`https://wa.me/${OWNER_WHATSAPP}?text=${text}`, "_blank");
-}
-
-function sendOrderEmail() {
-  const subject = encodeURIComponent(lastOrderSubject || "Nouvelle commande");
-  const body = encodeURIComponent(lastOrderMessage || "Nouvelle commande");
-  window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
 }
 
 function placeOrder(event) {
