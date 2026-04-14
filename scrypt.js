@@ -411,6 +411,8 @@ function sendOrderEmail() {
 function placeOrder(event) {
   event.preventDefault(); // Empêcher la soumission par défaut
 
+  console.log("🔵 placeOrder() called");
+
   const prenom = document.getElementById("ck-prenom")?.value.trim() || "";
   const nom = document.getElementById("ck-nom")?.value.trim() || "";
   const email = document.getElementById("ck-email")?.value.trim() || "";
@@ -420,25 +422,35 @@ function placeOrder(event) {
   const payMethod = document.querySelector('input[name="payment"]:checked');
 
   if (!prenom || !nom) {
-    alert("Veuillez entrer votre prénom et nom.");
+    alert("❌ Veuillez entrer votre prénom et nom.");
     return false;
   }
   if (!email || !email.includes("@")) {
-    alert("Veuillez entrer une adresse email valide.");
+    alert("❌ Veuillez entrer une adresse email valide.");
     return false;
   }
   if (!tel) {
-    alert("Veuillez entrer votre numéro de téléphone.");
+    alert("❌ Veuillez entrer votre numéro de téléphone.");
     return false;
   }
   if (!adresse || !ville) {
-    alert("Veuillez entrer votre adresse de livraison.");
+    alert("❌ Veuillez entrer votre adresse de livraison.");
     return false;
   }
   if (!payMethod) {
-    alert("Veuillez choisir un mode de paiement.");
+    alert("❌ Veuillez choisir un mode de paiement.");
     return false;
   }
+  if (!cart || cart.length === 0) {
+    alert("❌ Votre panier est vide. Veuillez ajouter des articles.");
+    return false;
+  }
+
+  console.log(
+    "✅ Validation réussie, panier contient:",
+    cart.length,
+    "articles",
+  );
 
   const num = "JJF-" + Date.now().toString().slice(-6);
   const orderNum = "#" + num;
@@ -455,10 +467,15 @@ function placeOrder(event) {
     .join(" | ");
 
   // Remplir les champs cachés
-  document.getElementById("hidden-ordernum").value = orderNum;
-  document.getElementById("hidden-articles").value = cartDetails;
-  document.getElementById("hidden-total").value = getTotalPrice() + " FCFA";
-  document.getElementById("hidden-payment").value = paymentLabel;
+  try {
+    document.getElementById("hidden-ordernum").value = orderNum;
+    document.getElementById("hidden-articles").value = cartDetails;
+    document.getElementById("hidden-total").value = getTotalPrice() + " FCFA";
+    document.getElementById("hidden-payment").value = paymentLabel;
+    console.log("✅ Champs cachés remplis");
+  } catch (err) {
+    console.error("❌ Erreur remplissage champs cachés:", err);
+  }
 
   // Afficher le message de confirmation avant soumission
   document.getElementById("ckFormGrid").style.display = "none";
@@ -476,8 +493,11 @@ function placeOrder(event) {
     `;
   }
 
+  console.log("✅ Message de succès affiché, soumission dans 1s...");
+
   // Soumettre le formulaire après un court délai
   setTimeout(() => {
+    console.log("🔵 Soumission du formulaire");
     document.getElementById("checkoutForm").submit();
   }, 1000);
 
